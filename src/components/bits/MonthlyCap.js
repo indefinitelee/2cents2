@@ -9,19 +9,6 @@ import {
 
 export class MonthlyCap extends React.Component {
 
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //     plaidVerification: {}, // bank accounts, address, full name, etc.
-  //     cap: 0, // User's monthly cap
-  //     currentCharities: [], // User's selected charities
-  //     userProfilePic: '', // is this a uri ref? Where is this stored?
-  //     percentOfCap: 0, // this will help render the pie chart of monthly giving
-  //     notifications: {}, // receive push notifications? Email updates?
-  //   }
-  // }
-
-
   constructor(props) {
     super(props)
     this.state = {
@@ -29,14 +16,14 @@ export class MonthlyCap extends React.Component {
     }
   }
 
-  handleIncreaseCap = ()=> {
-    let cap = this.state.cap;
-    this.setState(prevState => ({
-      cap: prevState.cap + 1})
-    );
+  handleIncreaseCap() {
+    let newCap = this.state.cap++;
+    this.setState({
+      cap: newCap
+    });
   }
 
-  handleDecreaseCap = ()=> {
+  handleDecreaseCap() {
     let cap = this.state.cap;
     if (this.state.cap > 0) {
       this.setState(prevState => ({

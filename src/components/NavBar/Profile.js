@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Button,
   Navigator,
   Image,
   Linking,
@@ -13,8 +14,6 @@ import {
 
 import Nav from './Nav.js'
 
-import { MonthlyCap } from '../bits/MonthlyCap';
-import { TodaysDate } from '../bits/TodaysDate';
 import { MonoText } from '../bits/StyledText';
 import { ProfilePic } from '../bits/ProfilePic';
 import { UserName } from '../bits/UserName';
@@ -25,14 +24,14 @@ export default class Profile extends React.Component {
     return(
       <View style={styles.container}>
         <View style={styles.headerBar}>
+          <ProfilePic />
           <UserName />
-          <TodaysDate />
         </View>
-        <View style={styles.piechart}>
-        <ProfilePic />
-        </View>
-        <View style={styles.charities}>
-          <MonthlyCap />
+          <View>
+            <Button style={styles.button} title="Change Password"  />
+            <Button style={styles.button} title="Monthly Cap"  />
+            <Button style={styles.button} title="Bank Info" />
+            <Button style={styles.button} title="Notifications" />
         </View>
       </View>
     )
@@ -54,25 +53,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 80,
   },
-  piechart: {
-    padding: 20,
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    width: '100%',
-    height: 200,
-  },
-  charities: {
-    padding: 20,
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: 'rgba(100,149,237, 0.3)',
-    width: '100%',
-    height: 170,
-  },
-  feed: {
-    backgroundColor: 'rgba(100,149,237, 0.2)',
-    width: '100%',
+  button: {
+    backgroundColor: 'rebeccapurple',
   }
+
 })
