@@ -8,6 +8,7 @@ import {
   ScrollView,
   StyleSheet,
   Text,
+  TouchableHighlight,
   TouchableOpacity,
   View,
 } from 'react-native';
@@ -23,14 +24,45 @@ export default class Profile extends React.Component {
     super(props);
     this.state = {
       picked: 'Profile',
+      visibility: 'hidden',
     };
   }
 
-  onMonthlyPress() {
+    onMonthlyPress() {
+      this.setState({
+        picked: 'MonthlyCap'
+      });
+    }
+
+    onChangePassword() {
     this.setState({
-      selected: 'MonthlyCap'
+      picked: 'ChangePassword'
     });
   }
+
+    onBankInfo() {
+    this.setState({
+      picked: 'BankInfo'
+    });
+  }
+
+    onNotifications() {
+    this.setState({
+      picked: 'Notifications'
+    });
+  }
+
+   goToPage() {
+     if (this.state.picked === 'ChangePassword') {
+       return <ChangePassword />;
+     } else if (this.state.picked === 'MonthlyCap') {
+       return <MonthlyCap />;
+     } else if (this.state.picked === 'BankInfo') {
+       return <BankInfo />;
+     } else if (this.state.picked === 'Notifications') {
+       return <Notifications />;
+     }
+   }
 
   render() {
     return(
@@ -38,14 +70,18 @@ export default class Profile extends React.Component {
         <View style={styles.headerBar}>
           <ProfilePic />
           <UserName />
-            <View style={styles.buttonHolder}>
-              <Button style={styles.button} title="Change Password" />
-              <Button style={styles.button} title="Monthly Cap" onPress={this.onMonthlyPress.bind(this)} />
-              <Button style={styles.button} title="Bank Info" />
-              <Button style={styles.button} title="Notifications" />
-            </View>
         </View>
-      </View>
+
+          <View style={styles.buttonContainer}>
+            <TouchableHighlight style={styles.button}> <Text>Change Password</Text> onPress={this.onChangePassword.bind(this)}</TouchableHighlight>
+            <TouchableHighlight style={styles.button}> <Text>Monthly Cap</Text> onPress={this.onMonthlyPress.bind(this)} </TouchableHighlight>
+            <TouchableHighlight style={styles.button}> <Text>Bank Info</Text> onPress={this.onBankInfo.bind(this)}</TouchableHighlight>
+            <TouchableHighlight style={styles.button}> <Text>Notifications</Text> onPress={this.onNotifications.bind(this)}</TouchableHighlight>
+          </View>
+          <View>
+            {this.goToPage()}
+          </View>
+        </View>
     );
   }
 }
@@ -58,17 +94,20 @@ const styles = StyleSheet.create({
   },
   headerBar: {
     padding: 20,
-    // flex: 1,
+    flex: 1,
     flexDirection: 'column',
-    // justifyContent: 'space-between',
+    justifyContent: 'space-between',
     backgroundColor: 'rgba(100,149,237, 1)',
     width: '100%',
     height: 80,
   },
 
-  buttonHolder: {
+  buttonContainer: {
     flexDirection: 'column',
+
   },
+
+
 
   button: {
     color: 'rebeccapurple',
