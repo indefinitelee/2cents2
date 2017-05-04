@@ -15,16 +15,9 @@ export class MonthlyCap extends React.Component {
     super(props);
   }
 
-  saveCap = () => {
-    let cap = this.state.cap;
-    this.props.navigator.push({
-    id: 'Monthly Cap'
-    });
-  }
-
   render() {
     return (
-      <View style={styles.container}>
+    <View style={styles.container}>
         <TouchableHighlight
           onPress={this.props.goBack}
           style={styles.backArrow}
@@ -46,11 +39,6 @@ export class MonthlyCap extends React.Component {
               {this.props.monthlyCap}
             </Text>
           </View>
-          <View>
-            <Button title="-" color="black" onPress={this.handleDecreaseCap}/>      
-           <Button title="+" color="black" onPress={this.handleIncreaseCap}/>
-            
-          </View>
         </View>
           <View style={styles.buttonContainer}>
             <TouchableHighlight
@@ -66,7 +54,7 @@ export class MonthlyCap extends React.Component {
               <Text style={styles.buttonText}>-</Text>
             </TouchableHighlight>
           </View>
-        </View>
+
         <TouchableHighlight
           onPress={this.props.onDoneMonthlyCapPress}
           style={styles.save}
